@@ -1,5 +1,8 @@
 package berdnne.brendensmod;
 
+import berdnne.brendensmod.block.ModBlocks;
+import berdnne.brendensmod.item.ModItemGroups;
+import berdnne.brendensmod.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -12,10 +15,9 @@ public class BrendensMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		ModItemGroups.registerItemGroups();
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }
