@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "brendensmod",
+	"version": "${version}",
+	"name": "Brenden's Mod",
+	"description": "This mod provides an overall worse gameplay experience!",
+	"authors": [
+		"Berdnne"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/brendensmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"berdnne.brendensmod.BrendensMod"
+		],
+		"client": [
+			"berdnne.brendensmod.BrendensModClient"
+		],
+		"fabric-datagen": [
+			"berdnne.brendensmod.BrendensModDataGenerator"
+		]
+	},
+	"mixins": [
+		"brendensmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
