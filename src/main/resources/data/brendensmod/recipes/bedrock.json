@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "brendensmod:the_block",
+      "count": 1
+    }
+  ],
+  "result": {
+    "id": "minecraft:bedrock",
+    "count": 9
+  }
+}

@@ -1,6 +1,7 @@
 package berdnne.brendensmod;
 
 import berdnne.brendensmod.block.ModBlocks;
+import berdnne.brendensmod.fluid.ModFluids;
 import berdnne.brendensmod.item.ModItemGroups;
 import berdnne.brendensmod.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -19,5 +20,6 @@ public class BrendensMod implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModFluids.register();
 	}
 }

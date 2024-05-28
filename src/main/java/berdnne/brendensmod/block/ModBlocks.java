@@ -1,7 +1,6 @@
 package berdnne.brendensmod.block;
 
 import berdnne.brendensmod.BrendensMod;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -14,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
-    public static final Block THE_BLOCK = registerBlock("the_block", new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.ANVIL)));
+    public static final Block THE_BLOCK = registerBlock("the_block", new Block(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).sounds(BlockSoundGroup.ANVIL)));
 
     private static Block registerBlock(String name, Block block) {
 
