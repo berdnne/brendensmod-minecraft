@@ -5,20 +5,20 @@ import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidFillable;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.*;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.FluidModificationItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
+import net.minecraft.item.MilkBucketItem;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -62,8 +62,8 @@ public abstract class MilkBucketItemMixin extends Item implements FluidModificat
                 cir.setReturnValue(ItemUsage.consumeHeldItem(world, user, hand));
                 cir.cancel();
             }
-            BlockState blockState = world.getBlockState(blockPos);
-            BlockPos blockPos4 = blockPos3 = blockPos2;
+
+            blockPos3 = blockPos2;
 
             if (this.placeFluid(user, world, blockPos3, blockHitResult)) {
                 user.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, user, new ItemStack(Items.BUCKET, 1)));
@@ -83,17 +83,15 @@ public abstract class MilkBucketItemMixin extends Item implements FluidModificat
     @Override
     public boolean placeFluid(@Nullable PlayerEntity player, World world, BlockPos pos, @Nullable BlockHitResult hitResult) {
 
-        FluidFillable fluidFillable;
         boolean bl2;
         Fluid fluid = ModFluids.MILK;
-        if (!(fluid instanceof FlowableFluid)) {
+        if (fluid == null) {
             return false;
         }
-        FlowableFluid flowableFluid = (FlowableFluid)fluid;
         BlockState blockState = world.getBlockState(pos);
         Block block = blockState.getBlock();
         boolean bl = blockState.canBucketPlace(ModFluids.MILK);
-        boolean bl3 = bl2 = blockState.isAir() || bl || block instanceof FluidFillable && (fluidFillable = (FluidFillable)((Object)block)).canFillWithFluid(player, world, pos, blockState, ModFluids.MILK);
+        bl2 = blockState.isAir() || bl || block instanceof FluidFillable && ((FluidFillable)(block)).canFillWithFluid(player, world, pos, blockState, ModFluids.MILK);
         if (!bl2) {
             return hitResult != null && this.placeFluid(player, world, hitResult.getBlockPos().offset(hitResult.getSide()), null);
         }
@@ -119,8 +117,7 @@ public abstract class MilkBucketItemMixin extends Item implements FluidModificat
     }
 
     private void playEmptyingSound(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos) {
-        SoundEvent soundEvent = SoundEvents.ITEM_BUCKET_EMPTY;
-        world.playSound(player, pos, soundEvent, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        world.emitGameEvent((Entity)player, GameEvent.FLUID_PLACE, pos);
+        world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        world.emitGameEvent(player, GameEvent.FLUID_PLACE, pos);
     }
 }

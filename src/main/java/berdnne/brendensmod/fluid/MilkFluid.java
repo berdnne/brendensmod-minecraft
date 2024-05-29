@@ -94,9 +94,9 @@ public abstract class MilkFluid extends FlowableFluid {
         return fluid == getStill() || fluid == getFlowing();
     }
 
-    @Override
     @Nullable
-    public ParticleEffect getParticle() {
+    @Override
+    protected ParticleEffect getParticle() {
         return ParticleTypes.WAX_OFF;
     }
 
@@ -130,6 +130,7 @@ public abstract class MilkFluid extends FlowableFluid {
         public boolean isStill(FluidState state) {
             return true;
         }
+
     }
 
 }

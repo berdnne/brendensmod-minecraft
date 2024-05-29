@@ -3,7 +3,8 @@
 	"package": "berdnne.brendensmod.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"MilkBucketItemMixin"
+		"MilkBucketItemMixin",
+		"StickEatingMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
